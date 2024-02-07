@@ -234,11 +234,11 @@ export default function Home() {
               content:'SUPERVISOR DE OBRA',
               styles:styles
             },{
-              content:'SUPERVISOR DE OBRA',
+              content:'ALMACENERO DE OBRA',
               styles:styles
             },{
-              content:'SUPERVISOR DE OBRA',
-              styles:styles
+              content:'',
+              styles:{...styles,cellWidth:65}
             }]],
           body: [[{
             content:'\n\n\n\n',
