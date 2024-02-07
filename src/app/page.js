@@ -271,25 +271,25 @@ export default function Home() {
           <label className="block text-gray-700 text-sm font-bold mb-2">
             Obra
           </label>
-          <input name="obra" value={formi.obra || ""} onChange={handleInput}  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text"/>
+          <input name="obra" value={formi.obra || ""} onChange={handleInput}  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" required/>
         </div>
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2">
             Entidad Ejecutora
           </label>
-          <input name="uejecutora" value={formi.uejecutora || ""} onChange={handleInput}  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text"/>
+          <input name="uejecutora" value={formi.uejecutora || ""} onChange={handleInput}  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" required/>
         </div>
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2">
             Modalidad de ejecución
           </label>
-          <input name="modejecucion" value={formi.modejecucion || ""} onChange={handleInput}  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text"/>
+          <input name="modejecucion" value={formi.modejecucion || ""} onChange={handleInput}  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" required/>
         </div>
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2">
             Almacenero de obra
           </label>
-          <input name="almacenero" value={formi.almacenero || ""} onChange={handleInput}  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text"/>
+          <input name="almacenero" value={formi.almacenero || ""} onChange={handleInput}  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" required/>
         </div>
         <div className="mb-4">
           <div className="flex flex-row">
@@ -311,13 +311,13 @@ export default function Home() {
           <label className="block text-gray-700 text-sm font-bold mb-2">
             Pedido por
           </label>
-          <input name="pedidopor" value={formi.pedidopor || ""} onChange={handleInput}  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text"/>
+          <input name="pedidopor" value={formi.pedidopor || ""} onChange={handleInput}  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" required/>
         </div>
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2">
             Cargo
           </label>
-          <input name="cargo" value={formi.cargo || ""} onChange={handleInput} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text"/>
+          <input name="cargo" value={formi.cargo || ""} onChange={handleInput} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" required/>
         </div>
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2">
