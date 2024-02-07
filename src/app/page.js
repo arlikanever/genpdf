@@ -92,7 +92,6 @@ export default function Home() {
           valign: 'middle',
           fontSize: 8,
         }
-        //console.log(data[i][1])
         doc.autoTable({
           body:[
             [ {
@@ -228,6 +227,7 @@ export default function Home() {
         
         });
         //final de hoja
+        if(arr.length>23) doc.addPage();
         styles={
           halign: 'center',
           lineWidth: 0.5, // Grosor del borde
