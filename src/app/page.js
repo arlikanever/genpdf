@@ -5,7 +5,9 @@ import * as XLSX from "xlsx";
 import jsPDF from "jspdf";
 import 'jspdf-autotable';
 import { arrayTable } from "@/Functions/pdf";
-
+import moment from 'moment';
+import 'moment/locale/es';
+moment.locale('es');
 
 export default function Home() {
   const [data, setData] = useState([]);
@@ -30,6 +32,7 @@ export default function Home() {
     if(data.length%2!==0) alert("Los datos son incorrectos....");
     const doc = new jsPDF('landscape');
     let page=1;
+    const textoFecha = `DEL ${moment(formi.fechai).format('D')} AL ${moment(formi.fechaf).format('D [DE] MMMM [DEL] YYYY')}`.toUpperCase()
     for (let i = 0; i < data.length/2; i=i+2) {
       let arr=arrayTable(i,data,formi)
       if(arr.length>0){
@@ -63,7 +66,7 @@ export default function Home() {
               content:"ALMACENERO DE OBRA",
               styles: styles
             },formi.almacenero,{
-              content:formi.fecha || "",
+              content:textoFecha || "",
               styles:{
                 cellWidth:75,
                 lineWidth: 0.5, // Grosor del borde
@@ -289,10 +292,20 @@ export default function Home() {
           <input name="almacenero" value={formi.almacenero || ""} onChange={handleInput}  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text"/>
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Mes
-          </label>
-          <input name="fecha" value={formi.fecha || ""} onChange={handleInput}  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text"/>
+          <div className="flex flex-row">
+            <div className="basis-1/2  mr-1">
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                Desde
+              </label>
+              <input name="fechai" value={formi.fechai || ""} onChange={handleInput}  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="date" required/>
+            </div>
+            <div className="basis-1/2 ml-1">
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                Hasta
+              </label>
+              <input name="fechaf" value={formi.fechaf || ""} onChange={handleInput}  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="date" required/>
+            </div>
+          </div>
         </div>
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2">
