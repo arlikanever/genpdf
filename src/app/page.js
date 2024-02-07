@@ -12,6 +12,8 @@ moment.locale('es');
 export default function Home() {
   const [data, setData] = useState([]);
   const [formi,setFormi]=useState({});
+  const [pdfUrl, setPdfUrl] = useState(null);
+
 
   const handleChange = (e) => {
     const file = e.target.files[0];
@@ -270,7 +272,10 @@ export default function Home() {
         page++;
       }
     }
-    doc.save("formato.pdf");
+    //doc.save("formato.pdf");
+    //const pdfBlob = doc.output('blob');
+    // Convertir el PDF a una URL de objeto
+    setPdfUrl(URL.createObjectURL(doc.output('blob')));
   }
 
   const handleInput=(e)=>{
@@ -278,76 +283,83 @@ export default function Home() {
     setFormi({...formi,[e.target.name]:e.target.value})
   }
   return (
-    <div className="max-h-fit max-w-fit">
-      <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 mx-auto my-auto">
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Obra
-          </label>
-          <input name="obra" value={formi.obra || ""} onChange={handleInput}  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" required/>
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Entidad Ejecutora
-          </label>
-          <input name="uejecutora" value={formi.uejecutora || ""} onChange={handleInput}  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" required/>
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Modalidad de ejecución
-          </label>
-          <input name="modejecucion" value={formi.modejecucion || ""} onChange={handleInput}  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" required/>
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Almacenero de obra
-          </label>
-          <input name="almacenero" value={formi.almacenero || ""} onChange={handleInput}  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" required/>
-        </div>
-        <div className="mb-4">
-          <div className="flex flex-row">
-            <div className="basis-1/2  mr-1">
+
+      <div className="flex flex-wrap">
+        <div className="w-full md:w-1/3 lg:w-1/3 xl:w-1/3 p-4">
+          <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 mx-auto my-auto">
+            <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2">
-                Desde
+                Obra
               </label>
-              <input name="fechai" value={formi.fechai || ""} onChange={handleInput}  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="date" required/>
+              <input name="obra" value={formi.obra || ""} onChange={handleInput}  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" required/>
             </div>
-            <div className="basis-1/2 ml-1">
+            <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2">
-                Hasta
+                Entidad Ejecutora
               </label>
-              <input name="fechaf" value={formi.fechaf || ""} onChange={handleInput}  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="date" required/>
+              <input name="uejecutora" value={formi.uejecutora || ""} onChange={handleInput}  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" required/>
             </div>
-          </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                Modalidad de ejecución
+              </label>
+              <input name="modejecucion" value={formi.modejecucion || ""} onChange={handleInput}  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" required/>
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                Almacenero de obra
+              </label>
+              <input name="almacenero" value={formi.almacenero || ""} onChange={handleInput}  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" required/>
+            </div>
+            <div className="mb-4">
+              <div className="flex flex-row">
+                <div className="basis-1/2  mr-1">
+                  <label className="block text-gray-700 text-sm font-bold mb-2">
+                    Desde
+                  </label>
+                  <input name="fechai" value={formi.fechai || ""} onChange={handleInput}  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="date" required/>
+                </div>
+                <div className="basis-1/2 ml-1">
+                  <label className="block text-gray-700 text-sm font-bold mb-2">
+                    Hasta
+                  </label>
+                  <input name="fechaf" value={formi.fechaf || ""} onChange={handleInput}  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="date" required/>
+                </div>
+              </div>
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                Pedido por
+              </label>
+              <input name="pedidopor" value={formi.pedidopor || ""} onChange={handleInput}  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" required/>
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                Cargo
+              </label>
+              <input name="cargo" value={formi.cargo || ""} onChange={handleInput} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" required/>
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                Excel
+              </label>
+              <input
+              id="file-upload"
+              type="file"
+              name="file"
+              className="border rounded-md p-2 text-center"
+              accept=".xlsx, .xls"
+              onChange={handleChange}
+              required
+            />
+            </div>
+            {data.length>0?<button type="submit" className="mt-4 bg-blue-500 hover:bg-blue-700 text-white p-2 rounded-md">Generar</button>:""}
+          </form>
         </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Pedido por
-          </label>
-          <input name="pedidopor" value={formi.pedidopor || ""} onChange={handleInput}  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" required/>
+        <div className="w-full md:w-2/3 lg:w-2/3 xl:w-2/3 p-4">
+          {pdfUrl && <iframe src={pdfUrl} width="100%" height="100%"></iframe>}
         </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Cargo
-          </label>
-          <input name="cargo" value={formi.cargo || ""} onChange={handleInput} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" required/>
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Excel
-          </label>
-          <input
-          id="file-upload"
-          type="file"
-          name="file"
-          className="border rounded-md p-2 text-center"
-          accept=".xlsx, .xls"
-          onChange={handleChange}
-          required
-        />
-        </div>
-        {data.length>0?<button type="submit" className="mt-4 bg-blue-500 hover:bg-blue-700 text-white p-2 rounded-md">Generar</button>:""}
-      </form>
-    </div>
+      </div>
+
   );
 }
