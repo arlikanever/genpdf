@@ -42,7 +42,7 @@ export default function Home() {
         const textWidth = doc.getStringUnitWidth(text) * doc.internal.getFontSize() / doc.internal.scaleFactor;
         const textX = (doc.internal.pageSize.width - textWidth) / 2;
         doc.text(text, textX, 10);
-        let styles={fontStyle: 'bold' ,cellWidth: 50 }
+        let styles={fontStyle: 'bold' ,cellWidth: 50,fontSize: 8 }
         doc.autoTable({
           columnWidths: [20, 100],
           body:[
@@ -53,26 +53,32 @@ export default function Home() {
               },{
                 colSpan:2,
                 content:formi.obra,
+                styles:{fontSize: 8},
               }],
             [{
               content:"ENTIDAD EJECUTORA",
               styles: styles
-            },{colSpan:2,content:formi.uejecutora}],
+            },{
+              colSpan:2,
+              content:formi.uejecutora,
+              styles:{fontSize: 8},
+            }],
             [{
               content:"MODALIDAD DE EJECUCION",
               styles: styles
-            },{colSpan:2,content:formi.modejecucion}],
+            },{colSpan:2,content:formi.modejecucion,styles:{fontSize: 8},}],
             [{
               content:"ALMACENERO DE OBRA",
               styles: styles
-            },formi.almacenero,{
+            },{content:formi.almacenero,styles:{fontSize: 8},},{
               content:textoFecha || "",
               styles:{
                 cellWidth:75,
                 lineWidth: 0.5, // Grosor del borde
                 lineColor: [0, 0, 0],
                 halign: 'center',
-                valign: 'middle' 
+                valign: 'middle',
+                fontSize: 8,
               }
             }]
           ],
@@ -80,7 +86,8 @@ export default function Home() {
         });
         styles={
           halign: 'center',
-          valign: 'middle' 
+          valign: 'middle',
+          fontSize: 8,
         }
         //console.log(data[i][1])
         doc.autoTable({
@@ -93,14 +100,15 @@ export default function Home() {
                   lineWidth: 0.5, // Grosor del borde
                   lineColor: [0, 0, 0],
                   halign: 'center',
-                  valign: 'middle' 
+                  valign: 'middle',
+                  fontSize: 8,
                 }
               },
               {
                 rowSpan:2,
                 content:"",
                 styles:{
-                  cellWidth:15
+                  cellWidth:15,
                 }
               },
               {
@@ -110,7 +118,8 @@ export default function Home() {
                   lineWidth: 0.5, // Grosor del borde
                   lineColor: [0, 0, 0],
                   halign: 'center',
-                  valign: 'middle' 
+                  valign: 'middle',
+                  fontSize: 8,
                 }
               },
               {
@@ -120,7 +129,8 @@ export default function Home() {
                   lineWidth: 0.5, // Grosor del borde
                   lineColor: [0, 0, 0],
                   halign: 'center',
-                  valign: 'middle' 
+                  valign: 'middle',
+                  fontSize: 8,
                 }
               }
             ],
@@ -131,7 +141,8 @@ export default function Home() {
                   lineWidth: 0.5, // Grosor del borde
                   lineColor: [0, 0, 0],
                   halign: 'center',
-                  valign: 'middle' 
+                  valign: 'middle',
+                  fontSize: 8,
                 }
             },{
               content:data[i][Object.keys(data[i])[0]],
@@ -140,7 +151,8 @@ export default function Home() {
                   lineWidth: 0.5, // Grosor del borde
                   lineColor: [0, 0, 0],
                   halign: 'center',
-                  valign: 'middle' 
+                  valign: 'middle',
+                  fontSize: 8,
                 }
             }]
           ]
@@ -177,7 +189,7 @@ export default function Home() {
               }, {
                 rowSpan:2,
                 content:"CARGO",
-                styles: styles
+                styles: {...styles,cellWidth:50}
               }, {
                 rowSpan:2,
                 content:"FIRMA",
