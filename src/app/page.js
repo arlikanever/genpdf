@@ -27,14 +27,15 @@ export default function Home() {
   };
   const handleSubmit=(e)=>{
     e.preventDefault()
-    console.log(data)
+    console.log(data,(data.length/2))
     if(data.length<1) return;
     if(data.length%2!==0) alert("Los datos son incorrectos....");
     const doc = new jsPDF('landscape');
     let page=1;
     const textoFecha = `DEL ${moment(formi.fechai).format('D')} AL ${moment(formi.fechaf).format('D [DE] MMMM [DEL] YYYY')}`.toUpperCase()
-    for (let i = 0; i < data.length/2; i=i+2) {
+    for (let i = 0; i < (data.length); i=i+2) {
       let arr=arrayTable(i,data,formi)
+      console.log(i)
       if(arr.length>0){
         if(page>1) doc.addPage();
         // Centrar el texto
