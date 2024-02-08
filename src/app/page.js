@@ -30,6 +30,7 @@ export default function Home() {
   const handleSubmit=(e)=>{
     e.preventDefault()
     console.log(data,(data.length/2))
+    
     if(data.length<1) return;
     if(data.length%2!==0) alert("Los datos son incorrectos....");
     const doc = new jsPDF('landscape');
@@ -226,8 +227,11 @@ export default function Home() {
           },
         
         });
+        let posisionY=doc.previousAutoTable.finalY
+        console.log(posisionY)
+        if(posisionY>160) doc.addPage();
         //final de hoja
-        if(arr.length>23) doc.addPage();
+        //if(arr.length>23) doc.addPage();
         styles={
           halign: 'center',
           lineWidth: 0.5, // Grosor del borde
@@ -239,7 +243,7 @@ export default function Home() {
           lineColor: [0, 0, 0], // Color del borde (
           cellHeight: 30
         }
-        doc.autoTable({
+        let footerd={
           startY: doc.internal.pageSize.height - 50,
           head: [[
             {
@@ -268,7 +272,9 @@ export default function Home() {
             content:'',
             styles:styles2
           }]]
-        });
+        }
+        if(posisionY>180) footerd={...footerd,startY:10};
+        doc.autoTable(footerd);
         page++;
       }
     }
